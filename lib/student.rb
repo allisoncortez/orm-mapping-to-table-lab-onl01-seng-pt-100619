@@ -39,16 +39,10 @@ class Student
     DB[:conn].execute(sql, self.name, self.grade)
   end
   
-  def self.create
-      sql = <<-SQL
-        CREATE TABLE IF NOT EXISTS students (
-          id INTEGER PRIMARY KEY,
-          name TEXT,
-          grade TEXT
-        )
-        SQL
-
-        DB[:conn].execute(sql)
+  def self.create(name:,grade:)
+    student = Student.new(name,grade)
+    student.save
+    student
   end
   
 end
